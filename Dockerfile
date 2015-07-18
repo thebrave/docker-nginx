@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM resin/rpi-raspbian:jessie
 MAINTAINER Jean Berniolles <jean@berniolles.fr>
 
 # init
@@ -29,6 +29,8 @@ RUN rm -rf /etc/nginx/*.d && \
 		/etc/nginx/nginx.d
 
 ADD config /config
+RUN chmod 755 /config/*
+
 ADD etc /etc
 
 ADD supervisord-nginx.conf /etc/supervisor/conf.d/nginx.conf

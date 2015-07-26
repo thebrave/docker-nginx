@@ -12,7 +12,8 @@ RUN apt-get update \
 		php5-cli php5-curl php5-fpm php5-gd php5-mcrypt \
 		php5-mysql php5-pgsql php5-sqlite \
 	&& apt-get clean \
-	&& echo -n > /var/lib/apt/extended_states
+	&& echo -n > /var/lib/apt/extended_states \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN rm -rf /etc/nginx/*.d && /etc/php5/fpm/pool.d \
 	mkdir -p /etc/nginx/addon.d /etc/nginx/conf.d /etc/nginx/host.d \

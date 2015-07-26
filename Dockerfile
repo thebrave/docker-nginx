@@ -15,8 +15,8 @@ RUN apt-get update \
 	&& echo -n > /var/lib/apt/extended_states \
   && rm -rf /var/lib/apt/lists/*
 
-RUN rm -rf /etc/nginx/*.d && /etc/php5/fpm/pool.d \
-	mkdir -p /etc/nginx/addon.d /etc/nginx/conf.d /etc/nginx/host.d \
+RUN rm -rf /etc/nginx/*.d /etc/php5/fpm/pool.d \
+	&& mkdir -p /etc/nginx/addon.d /etc/nginx/conf.d /etc/nginx/host.d \
 		/etc/nginx/nginx.d /etc/php5/fpm/pool.d
 
 ADD config /config

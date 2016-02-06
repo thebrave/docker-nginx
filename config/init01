@@ -1,12 +1,13 @@
-## Adapt uid and gid for www-data:www-data
-USERMAP_ORIG_UID=$(id -u www-data)
-USERMAP_ORIG_GID=$(id -g www-data)
+## Adapt uid and gid for nginx:nginx
+USERMAP_ORIG_UID=$(id -u nginx)
+USERMAP_ORIG_GID=$(id -g nginx)
 USERMAP_GID=${USERMAP_GID:-${USERMAP_UID:-$USERMAP_ORIG_GID}}
 USERMAP_UID=${USERMAP_UID:-$USERMAP_ORIG_UID}
 if [[ ${USERMAP_UID} != ${USERMAP_ORIG_UID} ]] || [[ ${USERMAP_GID} != ${USERMAP_ORIG_GID} ]]; then
-  echo "Adapting uid and gid for www-data:www-data to $USERMAP_UID:$USERMAP_GID"
-  groupmod -o -g ${USERMAP_GID} www-data
+  echo "Adapting uid and gid for nginx:nginx to $USERMAP_UID:$USERMAP_GID"
+  groupmod -o -g ${USERMAP_GID} nginx
   sed -i -e "s/:${USERMAP_ORIG_UID}:${USERMAP_GID}:/:${USERMAP_UID}:${USERMAP_GID}:/" /etc/passwd
 fi
 
-chown -R www-data:www-data /data
+mkdir -p /data
+chown -R nginx:nginx /data

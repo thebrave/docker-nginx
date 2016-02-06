@@ -1,3 +1,5 @@
+#!/bin/bash
+
 mkdir -p /data/config /data/http /data/logs /data/secure
 chown -R nginx:nginx /data
 chmod 0770 /data/secure

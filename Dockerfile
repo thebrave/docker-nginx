@@ -5,8 +5,9 @@ MAINTAINER Jean Berniolles <jean@berniolles.fr>
 CMD /config/loop
 
 # Base
+RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 RUN apk add --no-cache ca-certificates inotify-tools nano pwgen supervisor \
-		unzip wget bash nginx php php-fpm
+		unzip wget bash shadow@testing nginx php php-fpm
 
 RUN rm -rf /etc/nginx/*.d && \
 	mkdir -p /etc/nginx/addon.d /etc/nginx/conf.d /etc/nginx/host.d \
